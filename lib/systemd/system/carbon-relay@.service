@@ -1,0 +1,13 @@
+[Unit]
+Description=carbon-cache instance %i (graphite)
+
+[Service]
+User=graphite
+Group=graphite
+ExecStart=/usr/bin/python /usr/bin/carbon-relay.py --config=/etc/graphite/carbon.conf --instance=%i start
+Type=forking
+PIDFile=/var/run/graphite/carbon-relay-%i.pid
+
+[Install]
+WantedBy=multi-user.target
+
